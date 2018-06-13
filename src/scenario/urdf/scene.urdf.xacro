@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5_pick_place" >
+
+  <!-- Include other parts of the scene description -->
+  <xacro:include filename="$(find roadmap_tutorial)/urdf/parameters.urdf.xacro" />
+  <xacro:include filename="$(find roadmap_tutorial)/urdf/robot.urdf.xacro" />
+
+  <link name="world" />
+
+  <!-- Attach the world to the robot chain -->
+  <joint name="world_to_cart_base" type="fixed">
+    <origin xyz="${-cart_depth/2} 0 ${cart_height/2}" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="cart"/>
+  </joint>
+  
+  <!-- Attach world to the frame -->
+  <joint name="world_to_frame" type="fixed">
+    <origin rpy="0 0 ${M_PI/2}" xyz="${frame_depth} ${-frame_width/2} 0" />
+    <parent link="world"/>
+    <child link="frame"/>
+  </joint>
+
+  <link name="frame">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://roadmap_tutorial/meshes/frame.dae"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://roadmap_tutorial/meshes/frame.dae"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
+  </link>
+
+  <!-- Attach the world to the table -->
+  <joint name="world_to_table" type="fixed">
+    <origin rpy="0 0 0" xyz="${frame_depth/2.0} 0 ${table_height}" />
+    <parent link="world"/>
+    <child link="table"/>
+  </joint>
+
+  <link name="table">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 ${-table_thickness/2}"/>
+      <geometry>
+        <box size="${table_depth} ${table_width} ${table_thickness}"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${-table_thickness/2}"/>
+      <geometry>
+        <box size="${table_depth} ${table_width} ${table_thickness}"/>
+      </geometry>
+      <material name="white"/>
+    </collision>
+  </link>
+
+
+    <!-- Attach a box representing target object bounds -->
+    <!-- Uncomment below block to visualize target bounds -->
+
+   <!--    <joint name="base_link_to_target_bounds" type="fixed">  -->
+   <!--   <origin rpy="0 0 0" xyz="0.45 0 ${0.275 - 0.147 - 0.014}" /> -->
+   <!--   <parent link="base_link"/>  -->
+   <!--   <child link="target_bounds"/>  -->
+   <!-- </joint>  -->
+
+   <!-- <link name="target_bounds">  -->
+   <!--   <visual>  -->
+   <!--     <origin rpy="0 0 0" xyz="0 0 0"/>  -->
+   <!--     <geometry>  -->
+   <!--       <box size="0.5 0.8 0.15"/>  -->
+   <!--     </geometry>  -->
+   <!--     <material name="green"/>  -->
+   <!--   </visual> -->
+   <!-- </link> -->  
+
+
+</robot>

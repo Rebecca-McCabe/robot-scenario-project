@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find roadmap_tutorial)/urdf/scene.urdf.xacro'" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" args="-d $(find roadmap_tutorial)/launch/viz.rviz"/>
+  <node name="tutorial_state_publisher" pkg="roadmap_tutorial" type="tutorial_state_publisher" />
+</launch>

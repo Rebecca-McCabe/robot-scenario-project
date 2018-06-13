@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="num_samples" default="1000" />
+  <arg name="chain_start" default="base_link" />
+  <arg name="chain_end" default="tool0" />
+  <arg name="timeout" default="0.005" />
+  <arg name="config_fn" default="$(find roadmap_tutorial)/data/configs.txt" />
+  <arg name="edge_fn" default="$(find roadmap_tutorial)/data/edges.txt" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find roadmap_tutorial)/urdf/scene.urdf.xacro'" />
+  <param name="robot_description_semantic" textfile="$(find roadmap_tutorial)/urdf/ur5_pick_place.srdf" />
+  <node name="build_roadmap" pkg="roadmap_tutorial" type="build_roadmap" output="screen" required="true">
+    <param name="num_samples" value="$(arg num_samples)"/>
+    <param name="chain_start" value="$(arg chain_start)"/>
+    <param name="chain_end" value="$(arg chain_end)"/>
+    <param name="timeout" value="$(arg timeout)"/>
+    <param name="urdf_param" value="/robot_description"/>
+    <param name="config_fn" value="$(arg config_fn)"/>
+    <param name="edge_fn" value="$(arg edge_fn)"/>
+    <rosparam file="$(find roadmap_tutorial)/data/params.yaml" command="load"/>
+  </node>
+  
+</launch>

@@ -1,0 +1,24 @@
+seed_config: [0.6472, -1.84, 1.55, -1.272, -1.57, 0.0]
+x_min: 0.2
+x_max: 0.7
+y_min: -0.4
+y_max: 0.4
+dense_z_min: 0.2
+dense_z_max: 0.35
+sparse_z_min: 0.4
+sparse_z_max: 0.55
+dense_x_num_samples: 26
+dense_y_num_samples: 41
+dense_z_num_samples: 6
+sparse_x_num_samples: 6
+sparse_y_num_samples: 9
+sparse_z_num_samples: 3
+home_x_min: 0.3
+home_x_max: 0.45
+home_x_num_samples: 2
+home_y_min: 0
+home_y_max: 0
+home_y_num_samples: 1
+home_z_min: 0.6
+home_z_max: 0.6
+home_z_num_samples: 1
