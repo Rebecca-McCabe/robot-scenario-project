@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5_w_robotiq" >
+
+  <!--Must include other xacro files that define macros that will be used -->
+  <xacro:include filename="$(find scenarios)/urdf/ur5.urdf.xacro" />
+
+  <!-- Instantiate a ur5  -->
+  <xacro:ur5_robot prefix="" joint_limited="true" />
+
+  <!-- Create the cart that is the robot's base -->
+  <link name="cart">
+    <visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="${cart_depth} ${cart_width} ${cart_height} "/>
+      </geometry>
+      <material name="brown" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="${cart_depth} ${cart_width} ${cart_height} "/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Attach the ur5 to the cart -->
+  <joint name="cart_to_base_link" type="fixed">
+    <origin xyz="${cart_depth/2 - cart_offset} 0 ${cart_height/2}" rpy="0 0 0"/>
+    <parent link="cart"/>
+    <child link="base_link"/>
+  </joint>
+
+  <!-- Attach gripper -->
+  <joint name="wrist_to_adapter_plate" type="fixed">
+    <origin xyz="0 0 -0.01" rpy="0 0 0"/>
+    <parent link="tool0"/>
+    <child link="adapter_plate"/>
+  </joint>
+
+  <link name="adapter_plate">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 ${adapter_plate_length/2.0}"/>
+      <geometry>
+        <cylinder length="${adapter_plate_length}" radius="${adapter_plate_radius}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${adapter_plate_length/2.0}"/>
+      <geometry>
+        <cylinder length="${adapter_plate_length}" radius="${adapter_plate_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="plate_to_gripper" type="fixed">
+    <origin xyz="0 0 ${adapter_plate_length}" rpy="0 0 0"/>
+    <parent link="adapter_plate"/>
+    <child link="robotiq_85"/>
+  </joint>
+  
+
+  <link name="robotiq_85">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://scenarios/meshes/gripper.stl"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://scenarios/meshes/gripper.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Bounding volume, uncomment the below to enable -->
+
+  <joint name="plate_to_bounding_volume" type="fixed"> 
+  	<origin xyz="0 0 ${adapter_plate_length}" rpy="0 0 0"/>
+  		<parent link="adapter_plate"/>
+  		<child link="bounding_volume"/>
+  		</joint>
+
+  <link name="bounding_volume"> 
+     <visual> 
+      <origin rpy="0 0 0" xyz="0 0 ${bounding_volume_length/2.0}"/> 
+       <geometry> 
+         <cylinder length="${bounding_volume_length}" radius="${bounding_volume_radius}"/> 
+       </geometry> 
+       <material name="red"/> 
+     </visual> 
+     <collision> 
+       <origin rpy="0 0 0" xyz="0 0 ${bounding_volume_length/2.0}"/> 
+       <geometry> 
+         <cylinder length="${bounding_volume_length}" radius="${bounding_volume_radius}"/> 
+       </geometry> 
+     </collision> 
+   </link> 
+
+</robot>

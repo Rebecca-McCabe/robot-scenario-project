@@ -2,8 +2,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5_pick_place" >
 
   <!-- Include other parts of the scene description -->
-  <xacro:include filename="$(find roadmap_tutorial)/urdf/parameters.urdf.xacro" />
-  <xacro:include filename="$(find roadmap_tutorial)/urdf/robot.urdf.xacro" />
+  <xacro:include filename="$(find scenarios)/urdf/parameters.urdf.xacro" />
+  <xacro:include filename="$(find scenarios)/urdf/robot.urdf.xacro" />
 
   <link name="world" />
 
@@ -25,14 +25,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://roadmap_tutorial/meshes/frame.dae"/>
+        <mesh filename="package://scenarios/meshes/frame.dae"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://roadmap_tutorial/meshes/frame.dae"/>
+        <mesh filename="package://scenarios/meshes/frame.dae"/>
       </geometry>
       <material name="black"/>
     </collision>

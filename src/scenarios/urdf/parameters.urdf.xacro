@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="parameters for robot scenarios" >
+
+  <xacro:property name="M_PI" value="3.141592653589793" />
+  <xacro:property name="cart_height" value="0.885825" />
+  <xacro:property name="cart_width" value="0.7112" />
+  <xacro:property name="cart_depth" value="0.4572" />
+  <xacro:property name="cart_offset" value="0.1158875" />
+
+  <xacro:property name="table_width" value="2.25" />
+  <xacro:property name="table_depth" value="0.75" />
+  <xacro:property name="table_height" value="0.92075" />
+  <xacro:property name="table_thickness" value="0.03" />
+
+  <xacro:property name="adapter_plate_length" value="0.014" />
+  <xacro:property name="adapter_plate_radius" value="0.04" />
+
+  <xacro:property name="bounding_volume_length" value="0.147" />
+  <xacro:property name="bounding_volume_radius" value="${0.155/2}" />
+  
+  <xacro:property name="frame_width" value="2.5" />
+  <xacro:property name="frame_depth" value="1.0" />
+  <xacro:property name="frame_height" value="2.5" />
+
+  <xacro:property name="joint_1_lower_limit" value="-1.57" />
+  <xacro:property name="joint_1_upper_limit" value="1.57" />
+
+  <xacro:property name="joint_2_lower_limit" value="-1.57" />
+  <xacro:property name="joint_2_upper_limit" value="0" />
+
+  <xacro:property name="joint_3_lower_limit" value="0" />
+  <xacro:property name="joint_3_upper_limit" value="3.14" />
+
+  <xacro:property name="joint_4_lower_limit" value="-3.78" />
+  <xacro:property name="joint_4_upper_limit" value="1.22" />
+
+  <xacro:property name="joint_5_lower_limit" value="-4.0" />
+  <xacro:property name="joint_5_upper_limit" value="1.0" />
+
+  <xacro:property name="joint_6_lower_limit" value="0" />
+  <xacro:property name="joint_6_upper_limit" value="0" />
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  <material name="brown">
+    <color rgba="0.5 0.25 0.01 1"/>
+  </material>
+  <material name="red">
+    <color rgba="0.8 0 0 0.8"/>
+  </material>
+  <material name="green">
+    <color rgba="0 0.8 0 0.8"/>
+  </material>
+</robot>

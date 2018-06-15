@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="test_robot" >
+  <xacro:include filename="$(find scenarios)/urdf/parameters.urdf.xacro" />
+  <xacro:include filename="$(find scenarios)/urdf/robot.urdf.xacro" />
+
+
+  <link name="world" />
+
+  <!-- Attach world to robot -->
+  <joint name="world_to_cart_base" type="fixed">
+    <origin xyz="${-cart_depth/2} 0 ${cart_height/2}" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="cart"/>
+  </joint>
+  
+  <!-- Attach world to the frame -->
+  <joint name="world_to_frame" type="fixed">
+    <origin rpy="0 0 ${M_PI/2}" xyz="${frame_depth} ${-frame_width/2} 0" />
+    <parent link="world"/>
+    <child link="frame"/>
+  </joint>
+
+  <link name="frame">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://scenarios/meshes/frame.dae"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://scenarios/meshes/frame.dae"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
+  </link>
+
+
+</robot>
