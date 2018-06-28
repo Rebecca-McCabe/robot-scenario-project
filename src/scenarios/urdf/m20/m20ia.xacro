@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<robot name="fanuc_m20ia" xmlns:xacro="http://wiki.ros.org/xacro">
+  <xacro:include filename="$(find scenarios)/urdf/m20/m20ia_macro.xacro"/>
+  <xacro:fanuc_m20ia prefix=""/>
+  <joint name="world_to_pallet" type="fixed"> 
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="world" />
+    <child link="pallet" />
+  </joint>
+  <link name="world" />
+  <link name="pallet" />
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://scenarios/meshes/pallet_assembly.dae"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://scenarios/meshes/pallet_assembly.dae"/>
+      </geometry>
+      <material name="black"/>
+    </collision>
+  </link>
+</robot>
